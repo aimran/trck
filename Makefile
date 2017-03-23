@@ -43,7 +43,7 @@ lib/judy_str_map.o: deps/traildb/src/judy_str_map.c
 	$(CC) -c -std=c11 -O3 -g $(CFLAGS) -lJudy -o $@ $^
 
 lib/%.o: src/%.c
-	$(CC) -c -std=c11 -O3 -g -Ideps/traildb/src/ $(CFLAGS) -o $@ $^ $(CLIBS)
+	$(CC) -c -std=c11 -O3 -g -Ideps/traildb/src/ -Ideps/msgpack-c/include/ $(CFLAGS) -o $@ $^ $(CLIBS)
 
 lib/libtrck.a: $(COBJS) lib/judy_str_map.o lib/xxhash.o
 	$(AR) -ruvs $@ $^
