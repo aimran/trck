@@ -19,7 +19,7 @@ RUN apt-get update &&\
     libjson-c-dev \
     libcmph-dev \
     libc6-dev \
-    libtcmalloc-minimal4 \
+    libgoogle-perftools-dev \
     cmake \
     make &&\
     ldconfig &&\
@@ -34,6 +34,11 @@ RUN cd /opt &&\
     ./waf install &&\
     cp /usr/local/lib/libtraildb.so* /usr/lib/
 
+RUN cd /opt &&\
+  git clone https://github.com/traildb/traildb-python.git &&\
+  cd traildb-python &&\
+  python setup.py install
+
 ARG CACHE_DATE=2016-01-01
 RUN cd /opt &&\
     git clone --recursive -b fix_deps https://github.com/aimran/trck &&\
@@ -41,7 +46,7 @@ RUN cd /opt &&\
     cd deps/msgpack-c &&\
     cmake . &&\
     make install && \
-    cd .. &&\
+    cd ../.. &&\
     make install
 
 VOLUME /mnt/data
