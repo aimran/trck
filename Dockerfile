@@ -20,7 +20,9 @@ RUN apt-get update &&\
     libcmph-dev \
     libc6-dev \
     libtcmalloc-minimal4 \
+    cmake \
     make &&\
+    ldconfig &&\
     pip install awscli boto msgpack-python &&\
     mkdir -p /mnt/data &&\
     chmod a+rwx /mnt/data
@@ -36,6 +38,10 @@ ARG CACHE_DATE=2016-01-01
 RUN cd /opt &&\
     git clone --recursive -b fix_deps https://github.com/aimran/trck &&\
     cd trck &&\
+    cd deps/msgpack-c &&\
+    cmake . &&\
+    make install && \
+    cd .. &&\
     make install
 
 VOLUME /mnt/data

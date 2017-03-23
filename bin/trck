@@ -22,7 +22,7 @@ LIBS = ["-ltraildb", make_absolute("../lib/libtrck.a"),
         "-lcmph",
         "-lm",
         "-lJudy",
-        "-ltcmalloc",
+        "-ltcmalloc_minimal",
         "-lmsgpackc",
         "-ljson-c"]
 
