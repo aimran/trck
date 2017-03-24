@@ -5,7 +5,7 @@ SCRIPT=$1
 INPUT=$2
 OUTPUT=$3
 
-if [ "$#" -le 2 ]; then
+if [ "$#" -le 3 ]; then
   echo "escuuse me ... try instead"
   echo "docker run -it -v $PWD:/mnt/data docker.internal.adroll.com:5000/bi/trck cool.tr input.tdb [output.csv]" >&2
   exit 1
@@ -16,7 +16,7 @@ trck -c $SCRIPT -o test_matcher >/dev/null
 
 if [ $OUTPUT ]
 then 
- ./test_matcher $INPUT > $OUTPUT
+ ./test_matcher $INPUT > $OUTPUT 2>/dev/null
  (>&2 echo "trck query finished ... hope you are happy")
 else
   ./test_matcher $INPUT
