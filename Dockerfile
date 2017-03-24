@@ -47,9 +47,8 @@ RUN cd /opt &&\
     cmake . &&\
     make install && \
     cd ../.. &&\
-    make install
-
-COPY run /usr/bin
+    make install &&\
+    cp run /usr/bin
 
 VOLUME /mnt/data
 WORKDIR /mnt/data
