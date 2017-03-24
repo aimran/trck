@@ -4,25 +4,32 @@ set -e
 SCRIPT=$1
 INPUT=$2
 OUTPUT=$3
+PARAMS=$4
 
 EXE="test_matcher"
 
 if [ $# -le 1 ]; then
   echo "escuuse me ... try instead"
-  echo "docker run -it -v $PWD:/mnt/data docker.internal.adroll.com:5000/bi/trck cool.tr input.tdb [output.csv]" >&2
+  echo "docker run -it -v $PWD:/mnt/data docker.internal.adroll.com:5000/bi/trck cool.tr input.tdb [output.csv params.json]" >&2
   exit 1
 fi
 
 trck -c $SCRIPT -o $EXE >/dev/null
-(>&2 echo "\ntr compiled succesfully ")
+(>&2 printf "\n tr compiled succesfully \n")
 
 if [ $OUTPUT ]
 then 
- ./$EXE $INPUT > $OUTPUT 2>/dev/null
- (>&2 echo "\ntrck query finished ")
+  if [ $PARAMS ]
+  then
+    ./$EXE --params $PARAMS $INPUT > $OUTPUT 2>/dev/null
+    (>&2 printf "\ntrck query finished\n ")
+  else
+    ./$EXE $INPUT > $OUTPUT 2>/dev/null
+    (>&2 printf "\ntrck query finished\n ")
+  fi
 else
   ./$EXE $INPUT 2>/dev/null
-  (>&2 echo "\ndid you memorize all that?")
+  (>&2 printf "\n did you memorize all that?\n")
 fi
 
 rm $EXE 

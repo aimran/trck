@@ -1,6 +1,6 @@
 REGISTRY = docker.internal.adroll.com:5000
 VERSION = $(shell git rev-parse HEAD)
-NAME = bi/$(shell basename $(shell pwd))
+NAME = bi/trck
 
 .PHONY: all deploy
 
