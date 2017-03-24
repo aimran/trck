@@ -49,5 +49,7 @@ RUN cd /opt &&\
     cd ../.. &&\
     make install
 
+COPY run /usr/bin
+
 VOLUME /mnt/data
 WORKDIR /mnt/data
