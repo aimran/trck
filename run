@@ -5,20 +5,20 @@ SCRIPT=$1
 INPUT=$2
 OUTPUT=$3
 
-if [ "$#" -le 3 ]; then
+if [ $# -le 1 ]; then
   echo "escuuse me ... try instead"
   echo "docker run -it -v $PWD:/mnt/data docker.internal.adroll.com:5000/bi/trck cool.tr input.tdb [output.csv]" >&2
   exit 1
 fi
 
 trck -c $SCRIPT -o test_matcher >/dev/null
-(>&2 echo "tr compiled succesfully ... you do not suck")
+(>&2 echo "tr compiled succesfully ")
 
 if [ $OUTPUT ]
 then 
  ./test_matcher $INPUT > $OUTPUT 2>/dev/null
- (>&2 echo "trck query finished ... hope you are happy")
+ (>&2 echo "trck query finished ")
 else
-  ./test_matcher $INPUT
+  ./test_matcher $INPUT 2>/dev/null
   (>&2 echo "did you memorize all that?")
 fi
