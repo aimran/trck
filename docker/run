@@ -14,15 +14,15 @@ if [ $# -le 1 ]; then
 fi
 
 trck -c $SCRIPT -o $EXE >/dev/null
-(>&2 echo "tr compiled succesfully ")
+(>&2 echo "\ntr compiled succesfully ")
 
 if [ $OUTPUT ]
 then 
  ./$EXE $INPUT > $OUTPUT 2>/dev/null
- (>&2 echo "trck query finished ")
+ (>&2 echo "\ntrck query finished ")
 else
   ./$EXE $INPUT 2>/dev/null
-  (>&2 echo "did you memorize all that?")
+  (>&2 echo "\ndid you memorize all that?")
 fi
 
 rm $EXE 
