@@ -39,7 +39,7 @@ RUN cd /opt &&\
   cd traildb-python &&\
   python setup.py install
 
-ARG CACHE_DATE=2016-01-01
+ARG CACHE_DATE=2017-03-23
 RUN cd /opt &&\
     git clone --recursive -b fix_deps https://github.com/aimran/trck &&\
     cd trck &&\
@@ -47,8 +47,10 @@ RUN cd /opt &&\
     cmake . &&\
     make install && \
     cd ../.. &&\
-    make install &&\
-    cp run /usr/bin
+    make install
+
+COPY run /usr/bin/
 
 VOLUME /mnt/data
 WORKDIR /mnt/data
+ENTRYPOINT ["/usr/bin/run"]
