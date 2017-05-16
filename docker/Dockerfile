@@ -23,7 +23,7 @@ RUN apt-get update &&\
     cmake \
     make &&\
     ldconfig &&\
-    pip install awscli boto msgpack-python &&\
+    pip install awscli boto msgpack-python ipython==5.1.0 &&\
     mkdir -p /mnt/data &&\
     chmod a+rwx /mnt/data
 
